@@ -37,6 +37,18 @@ const Auth = (() => {
     return "student";
   }
 
+  function _formatAuthError(error, fallback) {
+    const base = error?.message || fallback;
+    const details = error?.payload?.errors;
+    if (!details || typeof details !== "object") return base;
+
+    const firstDetail = Object.values(details).find(
+      (value) => typeof value === "string" && value.trim(),
+    );
+
+    return firstDetail || base;
+  }
+
   async function _signInWithPayload(payload, options = {}) {
     const response = await API.request(options.path, {
       method: "POST",
@@ -73,7 +85,7 @@ const Auth = (() => {
         { path: "/auth/login" },
       );
     } catch (error) {
-      UI.showToast(error.message || "⚠️ Unable to sign in.");
+      UI.showToast(_formatAuthError(error, "⚠️ Unable to sign in."));
     }
   }
 
@@ -105,7 +117,7 @@ const Auth = (() => {
         { path: "/auth/register" },
       );
     } catch (error) {
-      UI.showToast(error.message || "⚠️ Unable to register.");
+      UI.showToast(_formatAuthError(error, "⚠️ Unable to register."));
     }
   }
 
