@@ -1,0 +1,152 @@
+/* ============================================================
+   layout.css — App shell: sidebar, topbar, main content
+   Textora E-Library · UITS Software Engineering Lab 2026
+   ============================================================ */
+
+/* ── App wrapper ── */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; bottom: 0; left: 0;
+  z-index: 100;
+}
+
+.sidebar-brand {
+  padding: 1.4rem 1.4rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.sidebar-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+.sidebar-brand-sub {
+  font-size: .72rem;
+  color: rgba(255,255,255,.35);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.sidebar-user {
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sidebar-user-info .name  { font-size: .88rem; color: white; font-weight: 600; }
+.sidebar-user-info .role  {
+  font-size: .72rem;
+  color: rgba(255,255,255,.4);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+.nav-section-label {
+  padding: .6rem 1.4rem .3rem;
+  font-size: .68rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .65rem 1.4rem;
+  cursor: pointer;
+  color: rgba(255,255,255,.55);
+  font-size: .88rem;
+  transition: all .15s;
+  border-left: 3px solid transparent;
+}
+.nav-item:hover  { color: white; background: rgba(255,255,255,.05); }
+.nav-item.active {
+  color: var(--accent);
+  background: rgba(200,169,110,.1);
+  border-left-color: var(--accent);
+}
+.nav-icon { font-size: 1rem; width: 20px; text-align: center; }
+
+.sidebar-footer {
+  padding: 1rem 1.4rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.sidebar-logout {
+  color: rgba(255,255,255,.5) !important;
+  border-color: rgba(255,255,255,.15) !important;
+}
+
+/* ── Main area ── */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Topbar ── */
+.topbar {
+  height: var(--header-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.topbar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--primary);
+  flex: 1;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 14px;
+  min-width: 260px;
+}
+.search-bar input {
+  border: none;
+  background: transparent;
+  font-size: .88rem;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+}
+
+/* ── Content area ── */
+.content { padding: 2rem; flex: 1; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .search-bar { min-width: 160px; }
+}
+@media (max-width: 600px) {
+  .sidebar { display: none; }
+  .main    { margin-left: 0; }
+}

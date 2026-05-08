@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textora – Web-Based Online E-Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/auth.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <link rel="stylesheet" href="./css/reader.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       AUTH: LOGIN
+  ══════════════════════════════ -->
+  <div id="page-login" class="full-page active">
+    <div class="auth-wrap">
+      <div class="hero-bg-circle" style="width:600px;height:600px;top:-200px;left:-100px;"></div>
+      <div class="hero-bg-circle" style="width:300px;height:300px;bottom:-50px;left:200px;"></div>
+      <div class="auth-left">
+        <div class="auth-brand">
+          <div class="auth-brand-name">📚 Textora</div>
+          <div class="auth-brand-tagline">Web-Based Online E-Library</div>
+        </div>
+        <div class="auth-hero-text">
+          Access <strong>thousands of books</strong>, read online, request titles,
+          and grow your knowledge — all in one digital library.
+        </div>
+        <div class="auth-dots">
+          <div class="auth-dot active"></div>
+          <div class="auth-dot"></div>
+          <div class="auth-dot"></div>
+        </div>
+      </div>
+      <div class="auth-decor"></div>
+      <div class="auth-right">
+        <div class="auth-box">
+          <h2>Welcome back</h2>
+          <p>Sign in to your Textora account</p>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="login-email" placeholder="your@email.com" value="user@textora.com">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-pass" placeholder="••••••••" value="password">
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-bottom:1.2rem;">
+            <a class="link-accent" onclick="Auth.forgotPassword()">Forgot password?</a>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="Auth.doLogin()">Sign In</button>
+          <div style="margin:1rem 0;text-align:center;color:var(--text-light);font-size:.82rem;">or</div>
+          <button class="btn btn-outline btn-full" onclick="Auth.doAdminLogin()">🔐 Sign in as Admin</button>
+          <div class="auth-link">Don't have an account?
+            <a onclick="UI.showPage('page-register')">Register now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       AUTH: REGISTER
+  ══════════════════════════════ -->
+  <div id="page-register" class="full-page">
+    <div class="auth-wrap">
+      <div class="auth-left">
+        <div class="auth-brand">
+          <div class="auth-brand-name">📚 Textora</div>
+          <div class="auth-brand-tagline">Web-Based Online E-Library</div>
+        </div>
+        <div class="auth-hero-text">
+          Join <strong>thousands of readers</strong>. Create your free account
+          and start reading today.
+        </div>
+      </div>
+      <div class="auth-decor"></div>
+      <div class="auth-right">
+        <div class="auth-box">
+          <h2>Create account</h2>
+          <p>Join the Textora community</p>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="reg-name" placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="reg-email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="reg-pass" placeholder="Create a strong password">
+          </div>
+          <div class="form-group">
+            <label>Account Type</label>
+            <select id="reg-role">
+              <option>Student</option>
+              <option>Teacher</option>
+              <option>General Reader</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="Auth.doRegister()">Create Account</button>
+          <div class="auth-link">Already have an account?
+            <a onclick="UI.showPage('page-login')">Sign in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       MAIN APP SHELL
+  ══════════════════════════════ -->
+  <div id="app" style="display:none;">
+    <div class="app-shell">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="sidebar-brand-name">📚 Textora</div>
+          <div class="sidebar-brand-sub">E-Library System</div>
+        </div>
+        <div class="sidebar-user">
+          <div class="avatar" id="sb-avatar">SR</div>
+          <div class="sidebar-user-info">
+            <div class="name" id="sb-name">Sumaiya Riya</div>
+            <div class="role" id="sb-role">Student</div>
+          </div>
+        </div>
+        <nav class="sidebar-nav" id="sidebar-nav"></nav>
+        <div class="sidebar-footer">
+          <button class="btn btn-outline btn-sm btn-full sidebar-logout" onclick="Auth.doLogout()">
+            ⬅ Sign Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title" id="topbar-title">Dashboard</div>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Search books, authors…"
+                   id="global-search" oninput="Catalog.liveSearch(this.value)">
+          </div>
+          <div class="avatar" id="top-avatar"
+               style="cursor:pointer;" onclick="Router.navigate('profile')">SR</div>
+        </header>
+        <div class="content" id="content-area"></div>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       BOOK READER OVERLAY
+  ══════════════════════════════ -->
+  <div class="reader-overlay" id="reader">
+    <div class="reader-topbar">
+      <span class="reader-brand">📚 Textora Reader</span>
+      <div class="reader-title" id="reader-book-title"></div>
+      <div class="reader-controls">
+        <span class="reader-progress-text" id="reader-progress-text">Page 1 of 5</span>
+        <button class="reader-btn" onclick="Reader.prev()">◀ Prev</button>
+        <button class="reader-btn" onclick="Reader.next()">Next ▶</button>
+        <button class="reader-btn" onclick="Reader.close()">✕ Close</button>
+      </div>
+    </div>
+    <div class="reader-progress">
+      <div class="reader-progress-bar" id="reader-bar" style="width:20%;"></div>
+    </div>
+    <div class="reader-body" id="reader-body"></div>
+    <div class="reader-footer">
+      <span class="reader-chapter" id="reader-footer-text">Chapter 1</span>
+      <button class="reader-btn" onclick="Reader.prev()" style="margin-left:auto;">◀</button>
+      <button class="reader-btn" onclick="Reader.next()">▶</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       MODAL: ADD / EDIT BOOK
+  ══════════════════════════════ -->
+  <div class="modal-overlay" id="book-modal">
+    <div class="modal">
+      <h3 id="modal-title">Add New Book</h3>
+      <p id="modal-sub">Upload a new book to the Textora catalog</p>
+      <div class="form-group">
+        <label>Book Title</label>
+        <input type="text" id="m-title" placeholder="Enter title">
+      </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Author</label>
+          <input type="text" id="m-author" placeholder="Author name">
+        </div>
+        <div class="form-group">
+          <label>ISBN</label>
+          <input type="text" id="m-isbn" placeholder="ISBN-13">
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Category</label>
+          <select id="m-cat">
+            <option>Science</option><option>Technology</option>
+            <option>Literature</option><option>History</option>
+            <option>Mathematics</option><option>Arts</option><option>Engineering</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Year</label>
+          <input type="number" id="m-year" placeholder="2024" value="2024">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="m-desc" rows="2" placeholder="Brief description…"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="UI.closeModal('book-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="Admin.saveBook()">Save Book</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       MODAL: REVIEW
+  ══════════════════════════════ -->
+  <div class="modal-overlay" id="review-modal">
+    <div class="modal">
+      <h3>Write a Review</h3>
+      <p id="review-modal-book"></p>
+      <div style="margin-bottom:1rem;">
+        <div class="form-label-upper">Your Rating</div>
+        <div class="star-select" id="modal-stars">
+          <span onclick="Reviews.setStars(1)">★</span>
+          <span onclick="Reviews.setStars(2)">★</span>
+          <span onclick="Reviews.setStars(3)">★</span>
+          <span onclick="Reviews.setStars(4)">★</span>
+          <span onclick="Reviews.setStars(5)">★</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Your Review</label>
+        <textarea id="review-text" rows="4" placeholder="Share your thoughts about this book…"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="UI.closeModal('review-modal')">Cancel</button>
+        <button class="btn btn-accent" onclick="Reviews.submit()">Submit Review</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ══════════════════════════════
+       SCRIPTS (order matters)
+  ══════════════════════════════ -->
+  <script>
+    window.TEXTORA_API_BASE_URL = 'http://127.0.0.1:8000';
+  </script>
+  <script src="../js/data.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/router.js"></script>
+  <script src="../js/reader.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/catalog.js"></script>
+  <script src="../js/admin.js"></script>
+  <script src="../js/pages/dashboard.js"></script>
+  <script src="../js/pages/bookdetail.js"></script>
+  <script src="../js/pages/myreads.js"></script>
+  <script src="../js/pages/requests.js"></script>
+  <script src="../js/pages/profile.js"></script>
+  <script src="../js/app.js"></script>
+ 
+
+ 
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+/* ============================================================
+   base.css — CSS custom properties, reset, typography
+   Textora E-Library · UITS Software Engineering Lab 2026
+   ============================================================ */
+
+:root {
+  /* Brand colours */
+  --primary:       #1a1a2e;
+  --accent:        #c8a96e;
+  --accent2:       #e8c98a;
+
+  /* Surfaces */
+  --surface:       #f9f6f0;
+  --surface2:      #f0ebe0;
+  --white:         #ffffff;
+
+  /* Text */
+  --text:          #1a1a2e;
+  --text-muted:    #6b6860;
+  --text-light:    #9c9890;
+
+  /* Borders */
+  --border:        #ddd8cc;
+
+  /* Semantic */
+  --success:       #2d7a4f;
+  --danger:        #b53a3a;
+  --warning:       #b07a20;
+  --info:          #1a4f8a;
+
+  /* Layout */
+  --sidebar-w:     240px;
+  --header-h:      64px;
+  --radius:        10px;
+  --shadow:        0 2px 16px rgba(26,26,46,0.08);
+  --shadow-lg:     0 8px 40px rgba(26,26,46,0.14);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+a { text-decoration: none; }
+button { font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+/* ── Page visibility ── */
+.page      { display: none; }
+.page.active { display: block; }
+.full-page { display: none; min-height: 100vh; }
+.full-page.active { display: flex; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 22px;
+  border-radius: var(--radius);
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all .18s;
+}
+.btn-primary  { background: var(--primary); color: var(--white); }
+.btn-primary:hover  { background: #2a2a4e; transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-accent   { background: var(--accent); color: var(--primary); }
+.btn-accent:hover   { background: var(--accent2); }
+.btn-outline  { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+.btn-outline:hover  { border-color: var(--accent); color: var(--accent); }
+.btn-danger   { background: var(--danger);  color: white; }
+.btn-danger:hover   { opacity: .9; }
+.btn-success  { background: var(--success); color: white; }
+.btn-success:hover  { opacity: .9; }
+.btn-sm   { padding: 6px 14px; font-size: .82rem; }
+.btn-full { width: 100%; }
+
+/* ── Forms ── */
+.form-group { margin-bottom: 1.2rem; }
+.form-group label,
+.form-label-upper {
+  display: block;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: .92rem;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color .2s;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { outline: none; border-color: var(--accent); }
+.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+.badge-success { background: #e8f5ec; color: var(--success); }
+.badge-danger  { background: #fdeaea; color: var(--danger); }
+.badge-warning { background: #fdf3e0; color: var(--warning); }
+.badge-info    { background: #e0eaf8; color: var(--info); }
+.badge-neutral { background: var(--surface2); color: var(--text-muted); }
+
+/* ── Tags / Chips ── */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--surface2);
+  border-radius: 4px;
+  font-size: .73rem;
+  color: var(--text-muted);
+}
+.chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  font-size: .82rem;
+  cursor: pointer;
+  transition: all .15s;
+  background: white;
+  color: var(--text-muted);
+}
+.chip:hover  { border-color: var(--accent); color: var(--accent); }
+.chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+.chip-row    { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+/* ── Avatar ── */
+.avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .85rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.avatar-lg {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* ── Stars ── */
+.stars { color: var(--accent); }
+.star-select { display: flex; gap: 4px; }
+.star-select span {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--border);
+  transition: color .1s;
+}
+.star-select span.active { color: var(--accent); }
+
+/* ── Misc ── */
+.divider        { height: 1px; background: var(--border); margin: 1.5rem 0; }
+.link-accent    { color: var(--accent); cursor: pointer; font-size: .83rem; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+.section-title  { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--primary); }
+.empty-state    { text-align: center; padding: 3rem; color: var(--text-muted); }
+.empty-state .icon { font-size: 3rem; margin-bottom: 1rem; }
+
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem;
+  background: var(--primary); color: white;
+  padding: .9rem 1.4rem; border-radius: 10px;
+  font-size: .88rem; box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  transform: translateY(100px);
+  transition: transform .3s;
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .form-grid-2 { grid-template-columns: 1fr; }
+}

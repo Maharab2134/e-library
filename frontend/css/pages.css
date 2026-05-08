@@ -1,0 +1,165 @@
+/* ============================================================
+   pages.css — Page-specific styles
+   Textora E-Library · UITS Software Engineering Lab 2026
+   ============================================================ */
+
+/* ── Book catalog grid ── */
+.catalog-toolbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.catalog-toolbar select,
+.catalog-toolbar input {
+  padding: 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: .88rem;
+  color: var(--text);
+  background: white;
+}
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+
+/* ── Book card ── */
+.book-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .2s;
+}
+.book-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.book-cover {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.book-info    { padding: .9rem; }
+.book-title   { font-weight: 600; font-size: .88rem; color: var(--primary); margin-bottom: 3px; line-height: 1.3; }
+.book-author  { font-size: .78rem; color: var(--text-muted); margin-bottom: 6px; }
+.book-rating  { font-size: .78rem; color: var(--accent); }
+.book-card-foot { display: flex; align-items: center; justify-content: space-between; }
+
+/* ── Book detail ── */
+.book-detail-hero {
+  display: flex;
+  gap: 2rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.book-cover-lg {
+  width: 160px; height: 220px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+.book-detail-info { flex: 1; }
+.book-detail-info h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  margin-bottom: .3rem;
+}
+.book-detail-info .author { font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem; }
+.book-meta-row { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.book-meta-item { font-size: .85rem; }
+.book-meta-item span { color: var(--text-muted); }
+.book-desc { font-size: .9rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem; }
+.book-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+/* ── Reviews ── */
+.review-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: .75rem;
+}
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: .5rem;
+}
+.review-name { font-weight: 600; font-size: .88rem; }
+.review-date { font-size: .78rem; color: var(--text-muted); margin-left: auto; }
+.review-text { font-size: .88rem; line-height: 1.6; color: var(--text-muted); }
+
+/* ── Reading history ── */
+.history-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: .9rem 0;
+  border-bottom: 1px solid var(--surface2);
+}
+.history-cover {
+  width: 42px; height: 56px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.history-info   { flex: 1; }
+.history-title  { font-weight: 600; font-size: .88rem; }
+.history-meta   { font-size: .78rem; color: var(--text-muted); }
+
+/* ── Book request form ── */
+.req-form {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+.req-form h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: .3rem;
+}
+.req-form > p {
+  color: var(--text-muted);
+  font-size: .88rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Profile ── */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.profile-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+.profile-meta { color: var(--text-muted); font-size: .88rem; margin-top: 4px; }
+
+/* ── Report bars ── */
+.report-bar-row { margin-bottom: .8rem; }
+.report-bar-row .label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .83rem;
+  margin-bottom: 4px;
+}
+.report-bar-bg  { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.report-bar-fill { height: 100%; background: var(--accent); border-radius: 3px; }

@@ -1,0 +1,117 @@
+/* ============================================================
+   auth.css — Login & Registration page styles
+   Textora E-Library · UITS Software Engineering Lab 2026
+   ============================================================ */
+
+.auth-wrap {
+  min-height: 100vh;
+  display: flex;
+  background: var(--primary);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Decorative background circles */
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: .04;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+/* Left panel — branding & hero copy */
+.auth-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  position: relative;
+  z-index: 2;
+}
+.auth-brand { margin-bottom: 3rem; }
+.auth-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--accent);
+  letter-spacing: -1px;
+}
+.auth-brand-tagline {
+  color: rgba(255,255,255,.55);
+  font-size: 1rem;
+  margin-top: .5rem;
+}
+.auth-hero-text {
+  color: rgba(255,255,255,.85);
+  font-size: 1.4rem;
+  line-height: 1.7;
+  max-width: 420px;
+}
+.auth-hero-text strong { color: var(--accent); }
+
+/* Animated dot indicators */
+.auth-dots { display: flex; gap: 8px; margin-top: 2.5rem; }
+.auth-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  transition: all .3s;
+}
+.auth-dot.active {
+  background: var(--accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Divider line between panels */
+.auth-decor {
+  position: absolute;
+  right: 460px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  z-index: 3;
+}
+
+/* Right panel — form */
+.auth-right {
+  width: 460px;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  position: relative;
+  z-index: 2;
+}
+.auth-box { width: 100%; max-width: 360px; }
+.auth-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: .4rem;
+}
+.auth-box p {
+  color: var(--text-muted);
+  font-size: .9rem;
+  margin-bottom: 2rem;
+}
+.auth-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: .88rem;
+  color: var(--text-muted);
+}
+.auth-link a {
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Responsive — collapse left panel on small screens */
+@media (max-width: 900px) {
+  .auth-left  { display: none; }
+  .auth-right { width: 100%; }
+  .auth-decor { display: none; }
+}
